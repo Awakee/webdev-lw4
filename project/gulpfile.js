@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     minjs = require('gulp-uglify');
     mincss = require('gulp-clean-css');
     suffix = require('gulp-rename');
+    minimg = require('gulp-imagemin');
 
 gulp.task('minjs', function () {
   gulp.src('js/registration.js')
@@ -22,7 +23,13 @@ gulp.task('mincss', function() {
   .pipe(gulp.dest('build/css/'))
 });
 
+gulp.task('minimg', function(){
+  gulp.src('img/*')
+  .pipe(minimg())
+  .pipe(gulp.dest('build/img'))
+});
 
-gulp.task('build', ['minjs', 'mincss', 'transferjquery']);
+
+gulp.task('build', ['minjs', 'mincss', 'transferjquery', 'minimg']);
 
 
